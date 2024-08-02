@@ -20,7 +20,4 @@ export class Person extends BaseEntity {
 
     @Column({ type: 'boolean', nullable: false, default: false })
     discapacidad: boolean
-
-    @OneToOne(() => Localidad, localidad => localidad.idLocalidad)
-    localidad: Localidad;
 }

@@ -1,5 +1,5 @@
 import { Person } from "src/entities/person.entity";
-import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from "typeorm";
 import { Co_titular } from "./cotitular.entity";
 import { Localidad } from "src/entities/localidad.entity";
 
@@ -17,7 +17,7 @@ export class Titular extends Person {
     @OneToMany(() => Co_titular, co_titular => co_titular.id)
     co_titulares: Co_titular
 
-    @OneToOne(() => Localidad, localidad => localidad.eleccion_titular, { eager: true })
+    @ManyToOne(() => Localidad, localidad => localidad.eleccion_titular, { eager: true })
     @JoinColumn()
     eleccion_lote: Localidad;
 }

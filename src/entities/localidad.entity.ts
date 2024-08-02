@@ -1,6 +1,6 @@
 import { Ubicacion } from "src/helpers/ubicacion.enum";
 import { Titular } from "src/register/entities/titular.entity";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -11,6 +11,6 @@ export class Localidad {
     @Column({ type: 'enum', enum: Ubicacion })
     localidad: Ubicacion
 
-    @OneToOne(() => Titular, titular => titular.eleccion_lote)
-    eleccion_titular: Titular;
+    @OneToMany(() => Titular, titular => titular.eleccion_lote)
+    eleccion_titular: Titular[];
 }
