@@ -1,1 +1,3 @@
-export class CreateRegisterDto {}
+export class CreateRegisterDto {
+    
+}
