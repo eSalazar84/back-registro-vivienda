@@ -1,5 +1,5 @@
 import { Person } from "src/entities/person.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { Co_titular } from "./cotitular.entity";
 import { Localidad } from "src/entities/localidad.entity";
 import { Ingreso } from "src/entities/ingreso.entity";

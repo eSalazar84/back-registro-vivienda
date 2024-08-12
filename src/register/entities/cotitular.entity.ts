@@ -26,5 +26,4 @@ export class Co_titular extends Person {
     @OneToMany(() => Ingreso, ingreso => ingreso.co_titular)
     ingreso: Ingreso[]
 
-
 }

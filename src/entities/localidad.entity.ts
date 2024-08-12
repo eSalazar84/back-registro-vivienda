@@ -1,6 +1,6 @@
 import { Ubicacion } from "src/helpers/ubicacion.enum";
 import { Titular } from "src/register/entities/titular.entity";
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()

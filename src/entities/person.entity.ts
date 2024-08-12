@@ -1,5 +1,4 @@
-import { BaseEntity, Column, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Localidad } from "./localidad.entity";
+import { BaseEntity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 
 export class Person extends BaseEntity {
@@ -13,7 +12,7 @@ export class Person extends BaseEntity {
     apellido: string
 
     @Column({ type: 'varchar', length: 20, unique: true, nullable: false })
-    dni: string    
+    dni: string
 
     @Column({ type: 'datetime', nullable: false })
     fecha_nacimiento: Date
