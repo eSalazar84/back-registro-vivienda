@@ -24,7 +24,7 @@ export class Titular extends Person {
     @OneToMany(() => Ingreso, ingreso => ingreso.titular)
     ingreso: Ingreso[]
 
-    @OneToMany(() => Co_titular, co_titular => co_titular.id)
+    @OneToMany(() => Co_titular, co_titular => co_titular.titular_a_cargo, { nullable: true })
     co_titulares: Co_titular[]
 
     @ManyToOne(() => Localidad, localidad => localidad.eleccion_titular, { eager: true })

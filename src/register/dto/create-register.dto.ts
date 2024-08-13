@@ -1,6 +1,6 @@
 import { IsString, MaxLength, IsNotEmpty, IsDateString, IsBoolean, IsEmail, IsInt, IsEnum, IsDecimal } from "class-validator"
 import { ItipoIngreso } from "src/helpers/ingreso.enum"
-import { Ubicacion } from "src/helpers/ubicacion.enum"
+import { IUbicacion } from "src/helpers/ubicacion.enum"
 
 export class CreateRegisterDto {
     
@@ -44,9 +44,9 @@ export class CreateRegisterDto {
     @IsInt()
     costo_alquiler: number
 
-    @IsEnum(Ubicacion)
+    @IsEnum(IUbicacion)
     @IsNotEmpty()
-    localidad: Ubicacion
+    localidad: IUbicacion
 
     @IsEnum(ItipoIngreso)
     @IsNotEmpty()

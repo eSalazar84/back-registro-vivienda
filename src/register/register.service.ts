@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { Person } from 'src/entities/person.entity';
@@ -14,6 +14,10 @@ import { CreateIngresoDto } from './dto/create-ingreso.dto';
 import { Hijo } from './entities/hijo.entity';
 import { CreateHijoDto } from './dto/create-hijo.dto';
 import { CreateRegisterDto } from './dto/create-register.dto';
+import { IUbicacion } from 'src/helpers/ubicacion.enum';
+import { ItipoIngreso } from 'src/helpers/ingreso.enum';
+import { Type } from 'class-transformer';
+import { ValidateNested } from 'class-validator';
 
 @Injectable()
 export class RegisterService {
@@ -28,14 +32,40 @@ export class RegisterService {
   ) { }
 
 
-  async create(newRegister: CreateRegisterDto) {
-    const createRegister = this.titularRepository.create(newRegister)
+  async create(
+    @Body() createTitularDto: CreateTitularDto,
+    @Body() createIngresoDto: CreateIngresoDto,
+    @Body() createLocalidadDto: CreateLocalidadDto,
+    @Body('coTitulares') coTitulares?: CreateCoTitularDto[]
+  ): Promise<string> {
 
-    return await this.titularRepository.save(createRegister);
+    const localidadSelected = this.localidadRepository.create(createLocalidadDto)
+
+    const saveLocalidad = await this.localidadRepository.save(localidadSelected);
+
+    const newIngreso = this.ingresoRepository.create(createIngresoDto)
+
+    const saveIngreso = await this.ingresoRepository.save(newIngreso)
+
+    const newRegister = this.titularRepository.create({
+      ...createTitularDto,
+      ingreso: [saveIngreso],
+      eleccion_lote: saveLocalidad,
+    })
+
+    await this.titularRepository.save(newRegister)
+
+
+
+    return `Registro creado exitosamente`
   }
 
-  async findAll() {
-    return await this.titularRepository.find({relations: ['ingreso', 'co_titulares', 'eleccion_lote']});
+  async findAllTitular() {
+    return await this.titularRepository.find({ relations: ['ingreso', 'co_titulares', 'eleccion_lote'] });
+  }
+
+  async findAllLocalidad() {
+    return await this.localidadRepository.find()
   }
 
   findOne(id: number) {

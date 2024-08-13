@@ -1,11 +1,11 @@
 import { IsEnum, IsNotEmpty } from "class-validator";
-import { Ubicacion } from "src/helpers/ubicacion.enum";
+import { IUbicacion } from "src/helpers/ubicacion.enum";
 
 
 export class CreateLocalidadDto {
     
-    @IsEnum(Ubicacion)
+    @IsEnum(IUbicacion)
     @IsNotEmpty()
-    localidad: Ubicacion
+    localidad: IUbicacion
 
 }

@@ -20,10 +20,10 @@ export class Co_titular extends Person {
     @Column({ type: 'int', nullable: true })
     costo_alquiler: number
 
-    @ManyToOne(() => Titular, titular => titular.id)
+    @ManyToOne(() => Titular, titular => titular.co_titulares)
     titular_a_cargo: Titular
 
-    @OneToMany(() => Ingreso, ingreso => ingreso.co_titular)
+    @OneToMany(() => Ingreso, ingreso => ingreso.co_titular, { nullable: true })
     ingreso: Ingreso[]
 
 }
